@@ -1,0 +1,647 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E82CD954271B0003005865AD /* TextNotebookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD953271B0003005865AD /* TextNotebookApp.swift */; };
+		E82CD956271B0003005865AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD955271B0003005865AD /* ContentView.swift */; };
+		E82CD958271B0005005865AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82CD957271B0005005865AD /* Assets.xcassets */; };
+		E82CD95B271B0005005865AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82CD95A271B0005005865AD /* Preview Assets.xcassets */; };
+		E82CD965271B0005005865AD /* TextNotebookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD964271B0005005865AD /* TextNotebookTests.swift */; };
+		E82CD96F271B0005005865AD /* TextNotebookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD96E271B0005005865AD /* TextNotebookUITests.swift */; };
+		E82CD97C271B0028005865AD /* TextDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD97B271B0028005865AD /* TextDocument.swift */; };
+		E8BBFF032724455600C88821 /* HighlightedTextEditor in Frameworks */ = {isa = PBXBuildFile; productRef = E8BBFF022724455600C88821 /* HighlightedTextEditor */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E82CD961271B0005005865AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E82CD948271B0003005865AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E82CD94F271B0003005865AD;
+			remoteInfo = TextNotebook;
+		};
+		E82CD96B271B0005005865AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E82CD948271B0003005865AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E82CD94F271B0003005865AD;
+			remoteInfo = TextNotebook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E82CD950271B0003005865AD /* TextEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82CD953271B0003005865AD /* TextNotebookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookApp.swift; sourceTree = "<group>"; };
+		E82CD955271B0003005865AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E82CD957271B0005005865AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E82CD95A271B0005005865AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E82CD960271B0005005865AD /* TextEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82CD964271B0005005865AD /* TextNotebookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookTests.swift; sourceTree = "<group>"; };
+		E82CD96A271B0005005865AD /* TextEditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextEditorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82CD96E271B0005005865AD /* TextNotebookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookUITests.swift; sourceTree = "<group>"; };
+		E82CD97B271B0028005865AD /* TextDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocument.swift; sourceTree = "<group>"; };
+		E82CD97D271B0521005865AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E82CD94D271B0003005865AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8BBFF032724455600C88821 /* HighlightedTextEditor in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82CD95D271B0005005865AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82CD967271B0005005865AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E82CD947271B0003005865AD = {
+			isa = PBXGroup;
+			children = (
+				E82CD952271B0003005865AD /* TextNotebook */,
+				E82CD963271B0005005865AD /* TextNotebookTests */,
+				E82CD96D271B0005005865AD /* TextNotebookUITests */,
+				E82CD951271B0003005865AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E82CD951271B0003005865AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E82CD950271B0003005865AD /* TextEditor.app */,
+				E82CD960271B0005005865AD /* TextEditorTests.xctest */,
+				E82CD96A271B0005005865AD /* TextEditorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E82CD952271B0003005865AD /* TextNotebook */ = {
+			isa = PBXGroup;
+			children = (
+				E82CD97D271B0521005865AD /* Info.plist */,
+				E82CD953271B0003005865AD /* TextNotebookApp.swift */,
+				E82CD97B271B0028005865AD /* TextDocument.swift */,
+				E82CD955271B0003005865AD /* ContentView.swift */,
+				E82CD957271B0005005865AD /* Assets.xcassets */,
+				E82CD959271B0005005865AD /* Preview Content */,
+			);
+			path = TextNotebook;
+			sourceTree = "<group>";
+		};
+		E82CD959271B0005005865AD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E82CD95A271B0005005865AD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E82CD963271B0005005865AD /* TextNotebookTests */ = {
+			isa = PBXGroup;
+			children = (
+				E82CD964271B0005005865AD /* TextNotebookTests.swift */,
+			);
+			path = TextNotebookTests;
+			sourceTree = "<group>";
+		};
+		E82CD96D271B0005005865AD /* TextNotebookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E82CD96E271B0005005865AD /* TextNotebookUITests.swift */,
+			);
+			path = TextNotebookUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E82CD94F271B0003005865AD /* TextEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E82CD972271B0005005865AD /* Build configuration list for PBXNativeTarget "TextEditor" */;
+			buildPhases = (
+				E82CD94C271B0003005865AD /* Sources */,
+				E82CD94D271B0003005865AD /* Frameworks */,
+				E82CD94E271B0003005865AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextEditor;
+			packageProductDependencies = (
+				E8BBFF022724455600C88821 /* HighlightedTextEditor */,
+			);
+			productName = TextNotebook;
+			productReference = E82CD950271B0003005865AD /* TextEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E82CD95F271B0005005865AD /* TextEditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E82CD975271B0005005865AD /* Build configuration list for PBXNativeTarget "TextEditorTests" */;
+			buildPhases = (
+				E82CD95C271B0005005865AD /* Sources */,
+				E82CD95D271B0005005865AD /* Frameworks */,
+				E82CD95E271B0005005865AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E82CD962271B0005005865AD /* PBXTargetDependency */,
+			);
+			name = TextEditorTests;
+			productName = TextNotebookTests;
+			productReference = E82CD960271B0005005865AD /* TextEditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E82CD969271B0005005865AD /* TextEditorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E82CD978271B0005005865AD /* Build configuration list for PBXNativeTarget "TextEditorUITests" */;
+			buildPhases = (
+				E82CD966271B0005005865AD /* Sources */,
+				E82CD967271B0005005865AD /* Frameworks */,
+				E82CD968271B0005005865AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E82CD96C271B0005005865AD /* PBXTargetDependency */,
+			);
+			name = TextEditorUITests;
+			productName = TextNotebookUITests;
+			productReference = E82CD96A271B0005005865AD /* TextEditorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E82CD948271B0003005865AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					E82CD94F271B0003005865AD = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					E82CD95F271B0005005865AD = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = E82CD94F271B0003005865AD;
+					};
+					E82CD969271B0005005865AD = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = E82CD94F271B0003005865AD;
+					};
+				};
+			};
+			buildConfigurationList = E82CD94B271B0003005865AD /* Build configuration list for PBXProject "TextEditor" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E82CD947271B0003005865AD;
+			packageReferences = (
+				E8BBFF012724455600C88821 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */,
+			);
+			productRefGroup = E82CD951271B0003005865AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E82CD94F271B0003005865AD /* TextEditor */,
+				E82CD95F271B0005005865AD /* TextEditorTests */,
+				E82CD969271B0005005865AD /* TextEditorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E82CD94E271B0003005865AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82CD95B271B0005005865AD /* Preview Assets.xcassets in Resources */,
+				E82CD958271B0005005865AD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82CD95E271B0005005865AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82CD968271B0005005865AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E82CD94C271B0003005865AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82CD956271B0003005865AD /* ContentView.swift in Sources */,
+				E82CD97C271B0028005865AD /* TextDocument.swift in Sources */,
+				E82CD954271B0003005865AD /* TextNotebookApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82CD95C271B0005005865AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82CD965271B0005005865AD /* TextNotebookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82CD966271B0005005865AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82CD96F271B0005005865AD /* TextNotebookUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E82CD962271B0005005865AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E82CD94F271B0003005865AD /* TextEditor */;
+			targetProxy = E82CD961271B0005005865AD /* PBXContainerItemProxy */;
+		};
+		E82CD96C271B0005005865AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E82CD94F271B0003005865AD /* TextEditor */;
+			targetProxy = E82CD96B271B0005005865AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E82CD970271B0005005865AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E82CD971271B0005005865AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E82CD973271B0005005865AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TextNotebook/Preview Content\"";
+				DEVELOPMENT_TEAM = NFCV56FYWZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TextNotebook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Text Editor";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextEditor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E82CD974271B0005005865AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TextNotebook/Preview Content\"";
+				DEVELOPMENT_TEAM = NFCV56FYWZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TextNotebook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Text Editor";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextEditor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E82CD976271B0005005865AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NFCV56FYWZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextNotebookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextEditor.app/TextEditor";
+			};
+			name = Debug;
+		};
+		E82CD977271B0005005865AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NFCV56FYWZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextNotebookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextEditor.app/TextEditor";
+			};
+			name = Release;
+		};
+		E82CD979271B0005005865AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NFCV56FYWZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextNotebookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TextNotebook;
+			};
+			name = Debug;
+		};
+		E82CD97A271B0005005865AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NFCV56FYWZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextNotebookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TextNotebook;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E82CD94B271B0003005865AD /* Build configuration list for PBXProject "TextEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82CD970271B0005005865AD /* Debug */,
+				E82CD971271B0005005865AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E82CD972271B0005005865AD /* Build configuration list for PBXNativeTarget "TextEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82CD973271B0005005865AD /* Debug */,
+				E82CD974271B0005005865AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E82CD975271B0005005865AD /* Build configuration list for PBXNativeTarget "TextEditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82CD976271B0005005865AD /* Debug */,
+				E82CD977271B0005005865AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E82CD978271B0005005865AD /* Build configuration list for PBXNativeTarget "TextEditorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82CD979271B0005005865AD /* Debug */,
+				E82CD97A271B0005005865AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8BBFF012724455600C88821 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kyle-n/HighlightedTextEditor";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8BBFF022724455600C88821 /* HighlightedTextEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8BBFF012724455600C88821 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */;
+			productName = HighlightedTextEditor;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E82CD948271B0003005865AD /* Project object */;
+}
