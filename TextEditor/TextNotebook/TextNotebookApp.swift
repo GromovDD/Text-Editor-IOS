@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 @main
 struct TextNotebookApp: App {
     var body: some Scene {
