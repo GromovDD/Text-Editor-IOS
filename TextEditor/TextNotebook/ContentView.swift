@@ -13,7 +13,8 @@ struct ContentView: View {
     @State private var wordsCount = 0
     @State private var words : [String] = []
     @State private var searchText = ""
-    @FocusState private var focus : Bool?
+    @FocusState private var searchBarFocus : Bool?
+    @FocusState private var editorFocus : Bool?
     @Binding var document: TextDocument
     private func dissmisKeyboard()
     {
@@ -43,7 +44,7 @@ struct ContentView: View {
         {
             if(isEditing) {
                 HStack {
-                    TextField("Search(beta)...", text: $searchText)
+                    TextField("Search(beta)...", text: $searchText).focused($searchBarFocus, equals: true)
                         .padding(7)
                         .padding(.horizontal, 25)
                         .background(Color(.systemGray6))
@@ -72,7 +73,7 @@ struct ContentView: View {
                 }.transition(AnyTransition.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: searchText.isEmpty ? []:  [HighlightRule(pattern:  try!  NSRegularExpression(pattern: searchText, options: []), formattingRule: TextFormattingRule(key: .foregroundColor, value: UIColor.red))]).focused($focus, equals: true).onTapGesture{
+            HighlightedTextEditor(text: $document.text, highlightRules: searchText.isEmpty ? []:  [HighlightRule(pattern:  try!  NSRegularExpression(pattern: searchText, options: []), formattingRule: TextFormattingRule(key: .foregroundColor, value: UIColor.red))]).focused($editorFocus, equals: true).onTapGesture{
                 dissmisKeyboard() }.onChange(of: $document.text.wrappedValue
                                              , perform: { _ in updateWords()
                     wordsCount = words.count
@@ -89,6 +90,9 @@ struct ContentView: View {
                     Button(action: {
                         withAnimation(.default) {
                             isEditing = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                searchBarFocus = true
+                            }
                         }
                     }, label:
                             {
@@ -113,7 +117,7 @@ struct ContentView: View {
         }.onAppear{
             if(document.text == "") {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    self.focus = true
+                    editorFocus = true
                 }
             } else{
                 updateWords()
