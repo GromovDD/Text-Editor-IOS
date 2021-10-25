@@ -8,9 +8,8 @@ import HighlightedTextEditor
 import SwiftUI
 extension String {
     func caseInsensitiveSplit(separator: String) -> [String] {
-        //Thanks for Carpsen90. Please see comments below.
         if separator.isEmpty {
-            return [self] //generates the same output as `.components(separatedBy: "")`
+            return [self] 
         }
         let pattern = NSRegularExpression.escapedPattern(for: separator)
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
