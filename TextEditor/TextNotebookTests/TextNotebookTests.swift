@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import TextNotebook
+@testable import TextEditor
 
 class TextNotebookTests: XCTestCase {
 

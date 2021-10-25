@@ -10,7 +10,7 @@ import SwiftUI
 struct TextNotebookApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: TextDocument()) { file in
-                   ContentView(document: file.$document)
+            ContentView(document: file.$document)
         }
     }
 }

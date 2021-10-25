@@ -6,6 +6,23 @@
 //
 import HighlightedTextEditor
 import SwiftUI
+extension String {
+    func caseInsensitiveSplit(separator: String) -> [String] {
+        //Thanks for Carpsen90. Please see comments below.
+        if separator.isEmpty {
+            return [self] //generates the same output as `.components(separatedBy: "")`
+        }
+        let pattern = NSRegularExpression.escapedPattern(for: separator)
+        let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let matches = regex.matches(in: self, options: [], range: NSRange(0..<self.utf16.count))
+        let ranges = (0..<matches.count+1).map { (i: Int)->NSRange in
+            let start = i == 0 ? 0 : matches[i-1].range.location + matches[i-1].range.length
+            let end = i == matches.count ? self.utf16.count: matches[i].range.location
+            return NSRange(location: start, length: end-start)
+        }
+        return ranges.map {String(self[Range($0, in: self)!])}
+    }
+}
 struct ContentView: View {
     @State private var currentSearchingWordIndex = 0
     @State private var isEditing = false
@@ -29,7 +46,7 @@ struct ContentView: View {
         }
     }
     private func getSubStringInString(str: String, substr: String) -> Int {
-        return str.components(separatedBy: substr).count - 1
+        return str.caseInsensitiveSplit(separator: substr).count - 1
     }
     private func updateFoundedWordsCount()
     {
@@ -38,6 +55,15 @@ struct ContentView: View {
     private func updateWords() {
         let components = $document.text.wrappedValue.components(separatedBy: .whitespacesAndNewlines)
         words = components.filter { !$0.isEmpty }
+    }
+    private func getHighlightRules(pattern: String) -> [HighlightRule]
+    {
+        do{
+            let regularExpression = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
+            return [HighlightRule(pattern: regularExpression, formattingRule: .init(key: .foregroundColor, value: UIColor.red))]
+        } catch {
+            return []
+        }
     }
     var body: some View {
         VStack
@@ -73,7 +99,7 @@ struct ContentView: View {
                 }.transition(AnyTransition.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: searchText.isEmpty ? []:  [HighlightRule(pattern:  try!  NSRegularExpression(pattern: searchText, options: []), formattingRule: TextFormattingRule(key: .foregroundColor, value: UIColor.red))]).focused($editorFocus, equals: true).onTapGesture{
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).focused($editorFocus, equals: true).onTapGesture{
                 dissmisKeyboard() }.onChange(of: $document.text.wrappedValue
                                              , perform: { _ in updateWords()
                     wordsCount = words.count
