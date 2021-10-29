@@ -23,6 +23,9 @@ extension String {
     }
 }
 struct ContentView: View {
+    @State private var choosedColor = Color.red
+    @State private var currentHighlightColor = UIColor.red
+    @State private var showColorChooseView = false
     @State private var currentSearchingWordIndex = 0
     @State private var isEditing = false
     @State private var foundedWordsCount = 0
@@ -35,6 +38,10 @@ struct ContentView: View {
     private func dissmisKeyboard()
     {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+    }
+    private func saveColor()
+    {
+        UserDefaults.standard.highlightColor = currentHighlightColor
     }
     private func dissmisSearch()
     {
@@ -59,7 +66,7 @@ struct ContentView: View {
     {
         do{
             let regularExpression = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
-            return [HighlightRule(pattern: regularExpression, formattingRule: .init(key: .foregroundColor, value: UIColor.red))]
+            return [HighlightRule(pattern: regularExpression, formattingRule: .init(key: .foregroundColor, value: currentHighlightColor))]
         } catch {
             return []
         }
@@ -95,7 +102,7 @@ struct ContentView: View {
                     }
                     .padding(.trailing, 10)
                     
-                }.transition(AnyTransition.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
+                }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
             HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).focused($editorFocus, equals: true).onTapGesture{
@@ -111,6 +118,12 @@ struct ContentView: View {
         }.toolbar{
             ToolbarItem(placement: .navigationBarTrailing)
             {
+                HStack {
+                ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
+                    color in
+                    currentHighlightColor = UIColor(color)
+                    saveColor()
+                }).labelsHidden()
                 if(!isEditing) {
                     Button(action: {
                         withAnimation(.default) {
@@ -124,6 +137,7 @@ struct ContentView: View {
                         Image(systemName: "magnifyingglass")
                     })
                 }
+                }.transition(.move(edge: .trailing).combined(with: .opacity))
             }
             ToolbarItem(placement: .bottomBar) {
                 if(isEditing && foundedWordsCount > 0)
@@ -148,6 +162,8 @@ struct ContentView: View {
                 updateWords()
                 wordsCount = words.count
             }
+            currentHighlightColor = UserDefaults.standard.highlightColor ?? .red
+            choosedColor = Color(currentHighlightColor)
         }
     }
     struct ContentView_Previews: PreviewProvider {
