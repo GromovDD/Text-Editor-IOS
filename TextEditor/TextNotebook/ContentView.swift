@@ -9,7 +9,7 @@ import SwiftUI
 extension String {
     func caseInsensitiveSplit(separator: String) -> [String] {
         if separator.isEmpty {
-            return [self] 
+            return [self]
         }
         let pattern = NSRegularExpression.escapedPattern(for: separator)
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
@@ -26,11 +26,9 @@ struct ContentView: View {
     @State private var choosedColor = Color.red
     @State private var currentHighlightColor = UIColor.red
     @State private var showColorChooseView = false
-    @State private var currentSearchingWordIndex = 0
-    @State private var isEditing = false
+    @State private var isSearching = false
     @State private var foundedWordsCount = 0
     @State private var wordsCount = 0
-    @State private var words : [String] = []
     @State private var searchText = ""
     @FocusState private var searchBarFocus : Bool?
     @FocusState private var editorFocus : Bool?
@@ -48,7 +46,7 @@ struct ContentView: View {
         dissmisKeyboard()
         searchText = ""
         withAnimation(.default) {
-            isEditing = false
+            isSearching = false
         }
     }
     private func getSubStringInString(str: String, substr: String) -> Int {
@@ -58,9 +56,9 @@ struct ContentView: View {
     {
         foundedWordsCount = getSubStringInString(str: document.text, substr: searchText)
     }
-    private func updateWords() {
+    private func updateWordsCount() {
         let components = $document.text.wrappedValue.components(separatedBy: .whitespacesAndNewlines)
-        words = components.filter { !$0.isEmpty }
+        wordsCount = components.filter { !$0.isEmpty }.count
     }
     private func getHighlightRules(pattern: String) -> [HighlightRule]
     {
@@ -74,7 +72,7 @@ struct ContentView: View {
     var body: some View {
         VStack
         {
-            if(isEditing) {
+            if(isSearching) {
                 HStack {
                     TextField("Search(beta)...", text: $searchText).focused($searchBarFocus, equals: true)
                         .padding(7)
@@ -83,7 +81,7 @@ struct ContentView: View {
                         .cornerRadius(8)
                         .padding(.horizontal, 10)
                         .onTapGesture {
-                            self.isEditing = true
+                            self.isSearching = true
                             updateFoundedWordsCount()
                         }.overlay(
                             HStack {
@@ -101,15 +99,13 @@ struct ContentView: View {
                         Text("Cancel")
                     }
                     .padding(.trailing, 10)
-                    
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
             HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).focused($editorFocus, equals: true).onTapGesture{
                 dissmisKeyboard() }.onChange(of: $document.text.wrappedValue
-                                             , perform: { _ in updateWords()
-                    wordsCount = words.count
-                    if(isEditing)
+                                             , perform: { _ in updateWordsCount()
+                    if(isSearching)
                     {
                         updateFoundedWordsCount()
                     }
@@ -119,28 +115,28 @@ struct ContentView: View {
             ToolbarItem(placement: .navigationBarTrailing)
             {
                 HStack {
-                ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
-                    color in
-                    currentHighlightColor = UIColor(color)
-                    saveColor()
-                }).labelsHidden()
-                if(!isEditing) {
-                    Button(action: {
-                        withAnimation(.default) {
-                            isEditing = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                searchBarFocus = true
+                    ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
+                        color in
+                        currentHighlightColor = UIColor(color)
+                        saveColor()
+                    }).labelsHidden()
+                    if(!isSearching) {
+                        Button(action: {
+                            withAnimation(.default) {
+                                isSearching = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                    searchBarFocus = true
+                                }
                             }
-                        }
-                    }, label:
-                            {
-                        Image(systemName: "magnifyingglass")
-                    })
-                }
+                        }, label:
+                                {
+                            Image(systemName: "magnifyingglass")
+                        })
+                    }
                 }.transition(.move(edge: .trailing).combined(with: .opacity))
             }
             ToolbarItem(placement: .bottomBar) {
-                if(isEditing && foundedWordsCount > 0)
+                if(isSearching && foundedWordsCount > 0)
                 {
                     HStack
                     {
@@ -159,8 +155,7 @@ struct ContentView: View {
                     editorFocus = true
                 }
             } else{
-                updateWords()
-                wordsCount = words.count
+                updateWordsCount()
             }
             currentHighlightColor = UserDefaults.standard.highlightColor ?? .red
             choosedColor = Color(currentHighlightColor)
