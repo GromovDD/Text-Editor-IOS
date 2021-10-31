@@ -23,6 +23,8 @@ extension String {
     }
 }
 struct ContentView: View {
+    @Environment(\.undoManager) var undoManager
+    @State private var oldText = ""
     @State private var choosedColor = Color.red
     @State private var currentHighlightColor = UIColor.red
     @State private var showColorChooseView = false
@@ -33,6 +35,19 @@ struct ContentView: View {
     @FocusState private var searchBarFocus : Bool?
     @FocusState private var editorFocus : Bool?
     @Binding var document: TextDocument
+
+    private func getBottomText() -> String
+    {
+        var result = ""
+        if(isSearching && foundedWordsCount > 0)
+        {
+            result = "Founded \(foundedWordsCount)\(foundedWordsCount == 1 ? " repeat" : " repeats")"
+        }
+        else if (wordsCount > 0) {
+            result = "Words count: \(wordsCount)"
+        }
+        return result
+    }
     private func dissmisKeyboard()
     {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -102,71 +117,90 @@ struct ContentView: View {
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).focused($editorFocus, equals: true).onTapGesture{
-                dissmisKeyboard() }.onChange(of: $document.text.wrappedValue
-                                             , perform: { _ in updateWordsCount()
-                    if(isSearching)
-                    {
-                        updateFoundedWordsCount()
-                    }
-                }
-                )
-        }.toolbar{
-            ToolbarItem(placement: .navigationBarTrailing)
-            {
-                HStack {
-                    ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
-                        color in
-                        currentHighlightColor = UIColor(color)
-                        saveColor()
-                    }).labelsHidden()
-                    if(!isSearching) {
-                        Button(action: {
-                            withAnimation(.default) {
-                                isSearching = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                    searchBarFocus = true
-                                }
-                            }
-                        }, label:
-                                {
-                            Image(systemName: "magnifyingglass")
-                        })
-                    }
-                }.transition(.move(edge: .trailing).combined(with: .opacity))
-            }
-            ToolbarItem(placement: .bottomBar) {
-                if(isSearching && foundedWordsCount > 0)
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).onTextChange{ _ in
+                updateWordsCount()
+                if(isSearching)
                 {
+                    updateFoundedWordsCount()
+                }}
+            .focused($editorFocus, equals: true).onTapGesture
+            {
+                dissmisKeyboard()
+            }.onChange(of: editorFocus) { editorFocus in
+                guard let focus = editorFocus else {return}
+                if(focus)
+                {
+                    oldText = document.text
+                } else if(oldText != document.text) {
+                    undoManager?.registerUndo(withTarget: document, handler:  {
+                        $0.text = oldText
+                    })
+                }
+            }.toolbar{
+                ToolbarItem(placement: .navigationBarTrailing)
+                {
+                    HStack {
+                        ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
+                            color in
+                            currentHighlightColor = UIColor(color)
+                            saveColor()
+                        }).labelsHidden()
+                        if(!isSearching) {
+                            Button(action: {
+                                withAnimation(.default) {
+                                    isSearching = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                        searchBarFocus = true
+                                    }
+                                }
+                            }, label:
+                                    {
+                                Image(systemName: "magnifyingglass")
+                            })
+                        }
+                    }.transition(.move(edge: .trailing).combined(with: .opacity))
+                }
+                ToolbarItem(placement: .bottomBar) {
                     HStack
                     {
+                        let canUndo = undoManager?.canUndo ?? false
+                        let canRedo = undoManager?.canRedo ?? false
+                        Button(action: {
+                            if(canUndo){
+                                undoManager?.undo()
+                            }
+                        }, label: { Image(systemName: "arrow.left.circle").foregroundColor(canUndo ? .blue : .gray)}).disabled(!canUndo)
+                        Button(action: {
+                            if(canRedo){
+                                undoManager?.redo()
+                            }
+                        }, label: { Image(systemName: "arrow.forward.circle").foregroundColor(canRedo ? .blue : .gray)}).disabled(!canRedo)
                         Spacer()
-                        Text("Founded \(foundedWordsCount)\(foundedWordsCount == 1 ? " repeat" : " repeats")")
+                        Text(getBottomText())
                         Spacer()
                     }
                 }
-                else if (wordsCount > 0) {
-                    Text("Words count: " + String(wordsCount))
+            }.onAppear{
+                if(document.text.isEmpty) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        editorFocus = true
+                    }
+                } else{
+                    updateWordsCount()
                 }
+                currentHighlightColor = UserDefaults.standard.highlightColor ?? .red
+                choosedColor = Color(currentHighlightColor)
+                oldText = document.text
             }
-        }.onAppear{
-            if(document.text == "") {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    editorFocus = true
-                }
-            } else{
-                updateWordsCount()
-            }
-            currentHighlightColor = UserDefaults.standard.highlightColor ?? .red
-            choosedColor = Color(currentHighlightColor)
         }
     }
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView(document: .constant(TextDocument()))
-        }
-    }
-    
-    
 }
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(document: .constant(TextDocument()))
+    }
+}
+
+
+
 
