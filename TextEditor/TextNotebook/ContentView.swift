@@ -23,6 +23,7 @@ extension String {
     }
 }
 struct ContentView: View {
+    @State private var empty = NSObject()
     @Environment(\.undoManager) var undoManager
     @State private var oldText = ""
     @State private var choosedColor = Color.red
@@ -33,9 +34,8 @@ struct ContentView: View {
     @State private var wordsCount = 0
     @State private var searchText = ""
     @FocusState private var searchBarFocus : Bool?
-    @FocusState private var editorFocus : Bool?
+    @FocusState private var editorFocus : Bool
     @Binding var document: TextDocument
-
     private func getBottomText() -> String
     {
         var result = ""
@@ -43,7 +43,7 @@ struct ContentView: View {
         {
             result = "Founded \(foundedWordsCount)\(foundedWordsCount == 1 ? " repeat" : " repeats")"
         }
-        else if (wordsCount > 0) {
+        else {
             result = "Words count: \(wordsCount)"
         }
         return result
@@ -117,26 +117,21 @@ struct ContentView: View {
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).onTextChange{ _ in
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).onTextChange { text in
+                undoManager?.registerUndo(withTarget: empty, handler:  { _ in
+                    let oldText = text
+                    document.text = oldText
+                })
+            }.focused($editorFocus).onTapGesture
+            {
+                dissmisKeyboard()
+            }.onChange(of: document.text, perform: {_ in
                 updateWordsCount()
                 if(isSearching)
                 {
                     updateFoundedWordsCount()
-                }}
-            .focused($editorFocus, equals: true).onTapGesture
-            {
-                dissmisKeyboard()
-            }.onChange(of: editorFocus) { editorFocus in
-                guard let focus = editorFocus else {return}
-                if(focus)
-                {
-                    oldText = document.text
-                } else if(oldText != document.text) {
-                    undoManager?.registerUndo(withTarget: document, handler:  {
-                        $0.text = oldText
-                    })
                 }
-            }.toolbar{
+            }).toolbar{
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     HStack {

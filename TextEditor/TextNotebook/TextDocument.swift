@@ -6,13 +6,13 @@
 //
 import SwiftUI
 import UniformTypeIdentifiers
-public class TextDocument: FileDocument {
+public struct TextDocument: FileDocument {
     public static var readableContentTypes = [UTType.plainText]
     public var text : String
     init(initialText: String = "") {
         text = initialText
     }
-   required public init(configuration: ReadConfiguration) throws {
+    public init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             text = String(data: data, encoding: .utf16)!
         } else {
