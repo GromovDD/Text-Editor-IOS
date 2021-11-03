@@ -15,6 +15,7 @@
 		E82CD96F271B0005005865AD /* TextNotebookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD96E271B0005005865AD /* TextNotebookUITests.swift */; };
 		E82CD97C271B0028005865AD /* TextDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD97B271B0028005865AD /* TextDocument.swift */; };
 		E8BBFF032724455600C88821 /* HighlightedTextEditor in Frameworks */ = {isa = PBXBuildFile; productRef = E8BBFF022724455600C88821 /* HighlightedTextEditor */; };
+		E8BE472927333527003D8641 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = E8BE472827333527003D8641 /* SPAlert */; };
 		E8C56EC0272BF8580094ADDC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56EBF272BF8580094ADDC /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8BE472927333527003D8641 /* SPAlert in Frameworks */,
 				E8BBFF032724455600C88821 /* HighlightedTextEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +154,7 @@
 			name = TextEditor;
 			packageProductDependencies = (
 				E8BBFF022724455600C88821 /* HighlightedTextEditor */,
+				E8BE472827333527003D8641 /* SPAlert */,
 			);
 			productName = TextNotebook;
 			productReference = E82CD950271B0003005865AD /* TextEditor.app */;
@@ -227,6 +230,7 @@
 			mainGroup = E82CD947271B0003005865AD;
 			packageReferences = (
 				E8BBFF012724455600C88821 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */,
+				E8BE472727333527003D8641 /* XCRemoteSwiftPackageReference "SPAlert" */,
 			);
 			productRefGroup = E82CD951271B0003005865AD /* Products */;
 			projectDirPath = "";
@@ -637,6 +641,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		E8BE472727333527003D8641 /* XCRemoteSwiftPackageReference "SPAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPAlert";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -644,6 +656,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E8BBFF012724455600C88821 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */;
 			productName = HighlightedTextEditor;
+		};
+		E8BE472827333527003D8641 /* SPAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8BE472727333527003D8641 /* XCRemoteSwiftPackageReference "SPAlert" */;
+			productName = SPAlert;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
