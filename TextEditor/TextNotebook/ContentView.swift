@@ -6,6 +6,7 @@
 //
 import HighlightedTextEditor
 import SwiftUI
+import UIKit
 extension String {
     func caseInsensitiveSplit(separator: String) -> [String] {
         if separator.isEmpty {
@@ -23,6 +24,8 @@ extension String {
     }
 }
 struct ContentView: View {
+    @State public var fileURL: URL?
+    @State private var showSaveErrorAlert = false
     @State private var empty = NSObject()
     @Environment(\.undoManager) var undoManager
     @State private var oldText = ""
@@ -35,7 +38,7 @@ struct ContentView: View {
     @State private var searchText = ""
     @FocusState private var searchBarFocus : Bool?
     @FocusState private var editorFocus : Bool
-    @Binding var document: TextDocument
+    @Binding public var document: TextDocument
     private func getBottomText() -> String
     {
         var result = ""
@@ -135,6 +138,20 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     HStack {
+                        Button(action:
+                                {
+                            do {
+                                try document.save().write(to: fileURL!, options: [], originalContentsURL: nil)
+                            } catch {
+                                showSaveErrorAlert = true
+                            }
+                        }
+                               , label: {
+                            Image(systemName: "folder")
+                        }
+                        ) .alert("Error while saving the document", isPresented: $showSaveErrorAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
                         ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
                             color in
                             currentHighlightColor = UIColor(color)
@@ -155,7 +172,7 @@ struct ContentView: View {
                         }
                     }.transition(.move(edge: .trailing).combined(with: .opacity))
                 }
-                ToolbarItem(placement: .bottomBar) {
+                ToolbarItem(placement: .navigationBarLeading, content: {
                     HStack
                     {
                         let canUndo = undoManager?.canUndo ?? false
@@ -170,10 +187,12 @@ struct ContentView: View {
                                 undoManager?.redo()
                             }
                         }, label: { Image(systemName: "arrow.forward.circle").foregroundColor(canRedo ? .blue : .gray)}).disabled(!canRedo)
-                        Spacer()
-                        Text(getBottomText())
-                        Spacer()
                     }
+                    
+                })
+                ToolbarItem(placement: .bottomBar)
+                {
+                    Text(getBottomText())
                 }
             }.onAppear{
                 if(document.text.isEmpty) {
@@ -192,7 +211,7 @@ struct ContentView: View {
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(document: .constant(TextDocument()))
+        ContentView(fileURL: nil, document: .constant(TextDocument()))
     }
 }
 
