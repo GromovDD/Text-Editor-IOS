@@ -15,7 +15,6 @@ extension Data {
     }
 }
 public struct TextDocument: FileDocument {
-    public let defaultEncoding : String.Encoding = .utf16
     public var textEncoding : String.Encoding = .utf16
     public static var readableContentTypes = [UTType.plainText]
     public var text = ""
