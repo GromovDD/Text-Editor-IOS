@@ -25,6 +25,7 @@ extension String {
     }
 }
 struct ContentView: View {
+    @State private var copyCompleted  = false
     @State private var saveAvailable = true
     private let alertDuration = 0.5
     @State private var showSaveSuccessAlert = false
@@ -272,7 +273,15 @@ struct ContentView: View {
             })
             ToolbarItem(placement: .bottomBar)
             {
-                Text(getBottomText())
+                HStack {
+                    Spacer()
+                    Text(getBottomText())
+                    Spacer()
+                    Button(action: {
+                        UIPasteboard.general.string = document.text
+                        copyCompleted = true
+                    }, label: { Image(systemName: "doc.on.doc")}).spAlert(isPresent: $copyCompleted, title: "Successful copied!", message: nil, duration: alertDuration, dismissOnTap: false, preset: .done, haptic: .success, layout: nil, completion: nil)
+                }
             }
         }.onAppear{
             if(document.text.isEmpty) {

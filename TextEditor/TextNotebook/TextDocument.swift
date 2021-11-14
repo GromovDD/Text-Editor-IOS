@@ -15,14 +15,11 @@ extension Data {
     }
 }
 public struct TextDocument: FileDocument {
-    public let textEncoding : String.Encoding
     public let defaultEncoding : String.Encoding = .utf16
+    public var textEncoding : String.Encoding = .utf16
     public static var readableContentTypes = [UTType.plainText]
-    public var text : String
-    init(initialText: String = "") {
-        text = initialText
-        textEncoding = defaultEncoding
-    }
+    public var text = ""
+    public init() {}
     public func save() throws -> FileWrapper
     {
         let data = text.data(using: textEncoding)!
@@ -31,11 +28,15 @@ public struct TextDocument: FileDocument {
     public init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             let soucreData = data
-            textEncoding = soucreData.stringEncoding!
-             text = String(data: soucreData, encoding: textEncoding)!
+            let isNull = soucreData.count == 2
+            if(!isNull) {
+                textEncoding = soucreData.stringEncoding!
+                text = String(data: soucreData, encoding: textEncoding)!
+            }
         } else {
             throw CocoaError(.fileReadCorruptFile)
         }
+        
     }
     public func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         try! save()
