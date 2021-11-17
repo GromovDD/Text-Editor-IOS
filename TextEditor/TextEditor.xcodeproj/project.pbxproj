@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B43D07A72744FBCB00A8E2DE /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D07A62744FBCB00A8E2DE /* MultilineTextField.swift */; };
 		E82CD954271B0003005865AD /* TextNotebookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD953271B0003005865AD /* TextNotebookApp.swift */; };
 		E82CD956271B0003005865AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD955271B0003005865AD /* ContentView.swift */; };
 		E82CD958271B0005005865AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82CD957271B0005005865AD /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B43D07A62744FBCB00A8E2DE /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		E82CD950271B0003005865AD /* TextEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82CD953271B0003005865AD /* TextNotebookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookApp.swift; sourceTree = "<group>"; };
 		E82CD955271B0003005865AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				E82CD953271B0003005865AD /* TextNotebookApp.swift */,
 				E82CD97B271B0028005865AD /* TextDocument.swift */,
 				E82CD955271B0003005865AD /* ContentView.swift */,
+				B43D07A62744FBCB00A8E2DE /* MultilineTextField.swift */,
 				E82CD957271B0005005865AD /* Assets.xcassets */,
 				E82CD959271B0005005865AD /* Preview Content */,
 			);
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43D07A72744FBCB00A8E2DE /* MultilineTextField.swift in Sources */,
 				E82CD956271B0003005865AD /* ContentView.swift in Sources */,
 				E82CD97C271B0028005865AD /* TextDocument.swift in Sources */,
 				E82CD954271B0003005865AD /* TextNotebookApp.swift in Sources */,

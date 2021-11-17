@@ -86,7 +86,7 @@ struct ContentView: View {
     private func getHighlightRules(pattern: String) -> [HighlightRule]
     {
         do{
-            let regularExpression = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
+            let regularExpression = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive, .ignoreMetacharacters])
             return [HighlightRule(pattern: regularExpression, formattingRule: .init(key: .foregroundColor, value: currentHighlightColor))]
         } catch {
             return []
@@ -97,15 +97,13 @@ struct ContentView: View {
         {
             if(isSearching) {
                 HStack {
-                    TextField("Search(beta)...", text: $searchText).focused($searchBarFocus, equals: true)
-                        .padding(7)
+                    MultilineTextField("Search(beta)...", text: $searchText,maxHeight: 82.0).focused($searchBarFocus, equals: true)
                         .padding(.horizontal, 25)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
                         .padding(.horizontal, 10)
                         .onTapGesture {
-                            self.isSearching = true
-                            updateFoundedWordsCount()
+                            dissmisKeyboard()
                         }.overlay(
                             HStack {
                                 Image(systemName: "magnifyingglass")
@@ -125,7 +123,7 @@ struct ContentView: View {
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).onTextChange { text in
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText.trimmingCharacters(in: .whitespacesAndNewlines))).onTextChange { text in
                 undoManager?.registerUndo(withTarget: empty, handler:  { _ in
                     let oldText = text
                     document.text = oldText
