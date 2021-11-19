@@ -16,11 +16,6 @@ extension CGFloat {
         }
     }
 }
-extension String {
-    var numberOfLines: Int {
-        return self.components(separatedBy: "\n").count
-    }
-}
 fileprivate struct UITextViewWrapper: UIViewRepresentable {
     typealias UIViewType = UITextView
     @Binding var text: String
@@ -39,12 +34,10 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         if nil != onDone {
             textField.returnKeyType = .done
         }
-        
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         UITextViewWrapper.recalculateHeight(view: textField, result: $calculatedHeight)
         return textField
     }
-    
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
         if uiView.text != self.text {
             uiView.text = self.text
@@ -53,7 +46,6 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
             uiView.becomeFirstResponder()
         }
     }
-    
     fileprivate static func recalculateHeight(view: UIView, result: Binding<CGFloat>, maxHeight: CGFloat? = nil) {
         var newSize = view.sizeThatFits(CGSize(width: view.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         if result.wrappedValue != newSize.height {
@@ -83,7 +75,7 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         func textViewDidChange(_ uiView: UITextView) {
             text.wrappedValue = uiView.text
             UITextViewWrapper.recalculateHeight(view: uiView, result: calculatedHeight, maxHeight: maxHeight)
-
+            
         }
         
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
