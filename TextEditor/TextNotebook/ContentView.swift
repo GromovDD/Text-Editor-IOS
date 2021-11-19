@@ -25,6 +25,12 @@ extension String {
     }
 }
 struct ContentView: View {
+     private let urlRegex = HighlightRule(pattern: try! NSRegularExpression(pattern: "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?", options: []), formattingRules: [
+        TextFormattingRule(key: .underlineStyle, value: NSUnderlineStyle.single.rawValue),
+        TextFormattingRule(key: .link) { urlString, _ in
+            URL(string: urlString) as Any
+        }
+    ])
     @State private var copyCompleted  = false
     @State private var saveAvailable = true
     private let alertDuration = 0.5
@@ -87,9 +93,9 @@ struct ContentView: View {
     {
         do{
             let regularExpression = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive, .ignoreMetacharacters])
-            return [HighlightRule(pattern: regularExpression, formattingRule: .init(key: .foregroundColor, value: currentHighlightColor))]
+            return [HighlightRule(pattern: regularExpression, formattingRule: .init(key: .foregroundColor, value: currentHighlightColor)), urlRegex]
         } catch {
-            return []
+            return [urlRegex]
         }
     }
     var body: some View {
