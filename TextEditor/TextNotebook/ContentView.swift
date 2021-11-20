@@ -25,7 +25,7 @@ extension String {
     }
 }
 struct ContentView: View {
-     private let urlRegex = HighlightRule(pattern: try! NSRegularExpression(pattern: "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?", options: []), formattingRules: [
+    private let urlRegex = HighlightRule(pattern: try! NSRegularExpression(pattern: "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?", options: []), formattingRules: [
         TextFormattingRule(key: .underlineStyle, value: NSUnderlineStyle.single.rawValue),
         TextFormattingRule(key: .link) { urlString, _ in
             URL(string: urlString) as Any
@@ -47,7 +47,7 @@ struct ContentView: View {
     @State private var foundedWordsCount = 0
     @State private var wordsCount = 0
     @State private var searchText = ""
-    @FocusState private var searchBarFocus : Bool?
+    @FocusState private var searchBarFocus : Bool
     @FocusState private var editorFocus : Bool
     @Binding public var document: TextDocument
     private func getBottomText() -> String
@@ -103,13 +103,15 @@ struct ContentView: View {
         {
             if(isSearching) {
                 HStack {
-                    MultilineTextField("Search(beta)...", text: $searchText,maxHeight: 82.0).focused($searchBarFocus, equals: true)
+                    MultilineTextField("Search(beta)...", text: $searchText,maxHeight: 82.0).focused($searchBarFocus)
                         .padding(.horizontal, 25)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
                         .padding(.horizontal, 10)
                         .onTapGesture {
-                            dissmisKeyboard()
+                            if(searchBarFocus) {
+                                dissmisKeyboard()
+                            }
                         }.overlay(
                             HStack {
                                 Image(systemName: "magnifyingglass")
@@ -129,14 +131,17 @@ struct ContentView: View {
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText.trimmingCharacters(in: .whitespacesAndNewlines))).onTextChange { text in
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText.trimmingCharacters(in: .whitespacesAndNewlines))).onSelectionChange{ _ in
+            }.onTextChange { text in
                 undoManager?.registerUndo(withTarget: empty, handler:  { _ in
                     let oldText = text
                     document.text = oldText
                 })
             }.focused($editorFocus).onTapGesture
             {
-                dissmisKeyboard()
+                if(editorFocus) {
+                    dissmisKeyboard()
+                }
             }.onChange(of: document.text, perform: {_ in
                 updateWordsCount()
                 if(isSearching)
