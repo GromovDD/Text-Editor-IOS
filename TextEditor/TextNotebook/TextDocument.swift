@@ -19,10 +19,9 @@ public struct TextDocument: FileDocument {
     public static var readableContentTypes = [UTType.plainText]
     public var text = ""
     public init() {}
-    public func save() throws -> FileWrapper
+    public func getFileWrapper() throws -> FileWrapper
     {
-        let data = text.data(using: textEncoding)!
-        return FileWrapper(regularFileWithContents: data)
+        return FileWrapper(regularFileWithContents: text.data(using: textEncoding)!)
     }
     public init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
@@ -35,9 +34,8 @@ public struct TextDocument: FileDocument {
         } else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        
     }
     public func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        try! save()
+        try! getFileWrapper()
     }
 }

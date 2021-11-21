@@ -157,7 +157,7 @@ struct ContentView: View {
                             {
                         do {
                             saveAvailable = false
-                            try document.save().write(to: fileURL!, options: [], originalContentsURL: nil)
+                            try document.getFileWrapper().write(to: fileURL!, options: [], originalContentsURL: nil)
                             showSaveSuccessAlert = true
                         } catch {
                             showSaveErrorAlert = true
@@ -171,77 +171,6 @@ struct ContentView: View {
                     }).spAlert(isPresent: $showSaveErrorAlert, title: "Error while saving!", message: nil, duration: alertDuration, dismissOnTap: false, preset: .error, haptic: .error, layout: nil, completion: {
                         saveAvailable = true
                     })
-                    ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
-                        color in
-                        currentHighlightColor = UIColor(color)
-                        saveColor()
-                    }).labelsHidden()
-                    if(!isSearching) {
-                        Button(action: {
-                            withAnimation(.default) {
-                                isSearching = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                    searchBarFocus = true
-                                }
-                            }
-                        }, label:
-                                {
-                            Image(systemName: "magnifyingglass")
-                        })
-                    }
-                }.transition(.move(edge: .trailing).combined(with: .opacity))
-            }
-            ToolbarItem(placement: .navigationBarLeading, content: {
-                HStack
-                {
-                    let canUndo = undoManager?.canUndo ?? false
-                    let canRedo = undoManager?.canRedo ?? false
-                    Button(action: {
-                        if(canUndo){
-                            undoManager?.undo()
-                        }
-                    }, label: { Image(systemName: "arrow.left.circle").foregroundColor(canUndo ? .blue : .gray)}).disabled(!canUndo)
-                    Button(action: {
-                        if(canRedo){
-                            undoManager?.redo()
-                        }
-                    }, label: { Image(systemName: "arrow.forward.circle").foregroundColor(canRedo ? .blue : .gray)}).disabled(!canRedo)
-                }
-                
-            })
-            ToolbarItem(placement: .bottomBar)
-            {
-                Text(getBottomText())
-            }
-        }.onAppear{
-            if(document.text.isEmpty) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    editorFocus = true
-                }
-            } else{
-                updateWordsCount()
-            }
-            currentHighlightColor = UserDefaults.standard.highlightColor ?? .red
-            choosedColor = Color(currentHighlightColor)
-            oldText = document.text
-        }.toolbar{
-            ToolbarItem(placement: .navigationBarTrailing)
-            {
-                HStack {
-                    Button(action:
-                            {
-                        do {
-                            saveAvailable = false
-                            try document.save().write(to: fileURL!, options: [], originalContentsURL: nil)
-                            showSaveSuccessAlert = true
-                        } catch {
-                            showSaveErrorAlert = true
-                        }
-                    }
-                           , label: {
-                        Image(systemName: "folder").accentColor(saveAvailable ? .blue : .gray)
-                    }
-                    ).disabled(!saveAvailable)
                     ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
                         color in
                         currentHighlightColor = UIColor(color)
