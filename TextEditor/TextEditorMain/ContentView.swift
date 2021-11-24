@@ -130,7 +130,10 @@ struct ContentView: View {
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText.trimmingCharacters(in: .whitespacesAndNewlines))).onSelectionChange{ _ in
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText.trimmingCharacters(in: .whitespacesAndNewlines))).introspect{
+                editor in
+                editor.textView.autocorrectionType = .no
+            }.onSelectionChange{ _ in
             }.onTextChange { text in
                 undoManager?.registerUndo(withTarget: empty, handler:  { _ in
                     let oldText = text
