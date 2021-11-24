@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B43D07A72744FBCB00A8E2DE /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D07A62744FBCB00A8E2DE /* MultilineTextField.swift */; };
-		E82CD954271B0003005865AD /* TextNotebookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD953271B0003005865AD /* TextNotebookApp.swift */; };
+		E82CD954271B0003005865AD /* TextEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD953271B0003005865AD /* TextEditorApp.swift */; };
 		E82CD956271B0003005865AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD955271B0003005865AD /* ContentView.swift */; };
 		E82CD958271B0005005865AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82CD957271B0005005865AD /* Assets.xcassets */; };
 		E82CD95B271B0005005865AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82CD95A271B0005005865AD /* Preview Assets.xcassets */; };
-		E82CD965271B0005005865AD /* TextNotebookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD964271B0005005865AD /* TextNotebookTests.swift */; };
-		E82CD96F271B0005005865AD /* TextNotebookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD96E271B0005005865AD /* TextNotebookUITests.swift */; };
+		E82CD965271B0005005865AD /* TextEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD964271B0005005865AD /* TextEditorTests.swift */; };
+		E82CD96F271B0005005865AD /* TextEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD96E271B0005005865AD /* TextEditorUITests.swift */; };
 		E82CD97C271B0028005865AD /* TextDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CD97B271B0028005865AD /* TextDocument.swift */; };
 		E8BBFF032724455600C88821 /* HighlightedTextEditor in Frameworks */ = {isa = PBXBuildFile; productRef = E8BBFF022724455600C88821 /* HighlightedTextEditor */; };
 		E8BE472927333527003D8641 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = E8BE472827333527003D8641 /* SPAlert */; };
@@ -40,14 +40,14 @@
 /* Begin PBXFileReference section */
 		B43D07A62744FBCB00A8E2DE /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		E82CD950271B0003005865AD /* TextEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E82CD953271B0003005865AD /* TextNotebookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookApp.swift; sourceTree = "<group>"; };
+		E82CD953271B0003005865AD /* TextEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorApp.swift; sourceTree = "<group>"; };
 		E82CD955271B0003005865AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E82CD957271B0005005865AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E82CD95A271B0005005865AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E82CD960271B0005005865AD /* TextEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E82CD964271B0005005865AD /* TextNotebookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookTests.swift; sourceTree = "<group>"; };
+		E82CD964271B0005005865AD /* TextEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorTests.swift; sourceTree = "<group>"; };
 		E82CD96A271B0005005865AD /* TextEditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextEditorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E82CD96E271B0005005865AD /* TextNotebookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNotebookUITests.swift; sourceTree = "<group>"; };
+		E82CD96E271B0005005865AD /* TextEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorUITests.swift; sourceTree = "<group>"; };
 		E82CD97B271B0028005865AD /* TextDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocument.swift; sourceTree = "<group>"; };
 		E82CD97D271B0521005865AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E8C56EBF272BF8580094ADDC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -83,12 +83,13 @@
 		E82CD947271B0003005865AD = {
 			isa = PBXGroup;
 			children = (
-				E82CD952271B0003005865AD /* TextNotebook */,
-				E82CD963271B0005005865AD /* TextNotebookTests */,
-				E82CD96D271B0005005865AD /* TextNotebookUITests */,
+				E82CD952271B0003005865AD /* TextEditorMain */,
+				E82CD963271B0005005865AD /* TextEditorTests */,
+				E82CD96D271B0005005865AD /* TextEditorUITests */,
 				E82CD951271B0003005865AD /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		E82CD951271B0003005865AD /* Products */ = {
 			isa = PBXGroup;
@@ -100,43 +101,43 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E82CD952271B0003005865AD /* TextNotebook */ = {
+		E82CD952271B0003005865AD /* TextEditorMain */ = {
 			isa = PBXGroup;
 			children = (
 				E82CD97D271B0521005865AD /* Info.plist */,
 				E8C56EBF272BF8580094ADDC /* Extensions.swift */,
-				E82CD953271B0003005865AD /* TextNotebookApp.swift */,
+				E82CD953271B0003005865AD /* TextEditorApp.swift */,
 				E82CD97B271B0028005865AD /* TextDocument.swift */,
 				E82CD955271B0003005865AD /* ContentView.swift */,
 				B43D07A62744FBCB00A8E2DE /* MultilineTextField.swift */,
 				E82CD957271B0005005865AD /* Assets.xcassets */,
-				E82CD959271B0005005865AD /* Preview Content */,
+				E82CD959271B0005005865AD /* PreviewContent */,
 			);
-			path = TextNotebook;
+			path = TextEditorMain;
 			sourceTree = "<group>";
 		};
-		E82CD959271B0005005865AD /* Preview Content */ = {
+		E82CD959271B0005005865AD /* PreviewContent */ = {
 			isa = PBXGroup;
 			children = (
 				E82CD95A271B0005005865AD /* Preview Assets.xcassets */,
 			);
-			path = "Preview Content";
+			path = PreviewContent;
 			sourceTree = "<group>";
 		};
-		E82CD963271B0005005865AD /* TextNotebookTests */ = {
+		E82CD963271B0005005865AD /* TextEditorTests */ = {
 			isa = PBXGroup;
 			children = (
-				E82CD964271B0005005865AD /* TextNotebookTests.swift */,
+				E82CD964271B0005005865AD /* TextEditorTests.swift */,
 			);
-			path = TextNotebookTests;
+			path = TextEditorTests;
 			sourceTree = "<group>";
 		};
-		E82CD96D271B0005005865AD /* TextNotebookUITests */ = {
+		E82CD96D271B0005005865AD /* TextEditorUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E82CD96E271B0005005865AD /* TextNotebookUITests.swift */,
+				E82CD96E271B0005005865AD /* TextEditorUITests.swift */,
 			);
-			path = TextNotebookUITests;
+			path = TextEditorUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +208,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					E82CD94F271B0003005865AD = {
 						CreatedOnToolsVersion = 13.0;
@@ -229,6 +230,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = E82CD947271B0003005865AD;
 			packageReferences = (
@@ -280,7 +282,7 @@
 				B43D07A72744FBCB00A8E2DE /* MultilineTextField.swift in Sources */,
 				E82CD956271B0003005865AD /* ContentView.swift in Sources */,
 				E82CD97C271B0028005865AD /* TextDocument.swift in Sources */,
-				E82CD954271B0003005865AD /* TextNotebookApp.swift in Sources */,
+				E82CD954271B0003005865AD /* TextEditorApp.swift in Sources */,
 				E8C56EC0272BF8580094ADDC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E82CD965271B0005005865AD /* TextNotebookTests.swift in Sources */,
+				E82CD965271B0005005865AD /* TextEditorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E82CD96F271B0005005865AD /* TextNotebookUITests.swift in Sources */,
+				E82CD96F271B0005005865AD /* TextEditorUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -382,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -440,12 +444,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TextNotebook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = TextEditorMain/PreviewContent;
 				DEVELOPMENT_TEAM = NFCV56FYWZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TextNotebook/Info.plist;
+				INFOPLIST_FILE = TextEditorMain/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Text Editor";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -457,7 +462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -473,12 +478,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TextNotebook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = TextEditorMain/PreviewContent;
 				DEVELOPMENT_TEAM = NFCV56FYWZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TextNotebook/Info.plist;
+				INFOPLIST_FILE = TextEditorMain/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Text Editor";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -490,7 +496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sergeymashentsev.TextEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

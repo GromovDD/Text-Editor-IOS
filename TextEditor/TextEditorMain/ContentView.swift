@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  TextNotebook
+//  TextEditor
 //
 //  Created by Serega on 16.10.2021.
 //

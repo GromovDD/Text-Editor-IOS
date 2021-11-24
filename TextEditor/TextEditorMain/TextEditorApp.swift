@@ -1,13 +1,13 @@
 //
-//  TextNotebookApp.swift
-//  TextNotebook
+//  TextEditorApp.swift
+//  TextEditor
 //
 //  Created by Serega on 16.10.2021.
 //
 
 import SwiftUI
 @main
-struct TextNotebookApp: App {
+struct TextEditorApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: TextDocument()){ file in
             ContentView(fileURL: file.fileURL, document: file.$document)

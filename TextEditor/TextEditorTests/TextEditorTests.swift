@@ -1,6 +1,6 @@
 //
-//  TextNotebookTests.swift
-//  TextNotebookTests
+//  TextEditorTests.swift
+//  TextEditorTests
 //
 //  Created by Serega on 16.10.2021.
 //
@@ -8,7 +8,7 @@
 import XCTest
 @testable import TextEditor
 
-class TextNotebookTests: XCTestCase {
+class TextEditorTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
