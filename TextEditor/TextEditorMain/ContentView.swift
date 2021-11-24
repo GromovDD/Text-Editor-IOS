@@ -7,7 +7,6 @@
 import SPAlert
 import HighlightedTextEditor
 import SwiftUI
-import UIKit
 extension String {
     func caseInsensitiveSplit(separator: String) -> [String] {
         if separator.isEmpty {
