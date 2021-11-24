@@ -191,23 +191,25 @@ struct ContentView: View {
                 }.transition(.move(edge: .trailing).combined(with: .opacity))
             }
             ToolbarItem(placement: .navigationBarLeading, content: {
-                HStack
-                {
-                    let canUndo = undoManager?.canUndo ?? false
-                    let canRedo = undoManager?.canRedo ?? false
-                    Button(action: {
-                        if(canUndo){
-                            undoManager?.undo()
-                        }
-                    }, label: { Image(systemName: "arrow.left.circle").foregroundColor(canUndo ? .blue : .gray)}).disabled(!canUndo)
-                    Button(action: {
-                        if(canRedo){
-                            undoManager?.redo()
-                        }
-                    }, label: { Image(systemName: "arrow.forward.circle").foregroundColor(canRedo ? .blue : .gray)}).disabled(!canRedo)
+                if !editorFocus {
+                    HStack
+                    {
+                        let canUndo = undoManager?.canUndo ?? false
+                        let canRedo = undoManager?.canRedo ?? false
+                        Button(action: {
+                            if(canUndo){
+                                undoManager?.undo()
+                            }
+                        }, label: { Image(systemName: "arrow.left.circle").foregroundColor(canUndo ? .blue : .gray)}).disabled(!canUndo)
+                        Button(action: {
+                            if(canRedo){
+                                undoManager?.redo()
+                            }
+                        }, label: { Image(systemName: "arrow.forward.circle").foregroundColor(canRedo ? .blue : .gray)}).disabled(!canRedo)
+                    }
                 }
-                
             })
+            
             ToolbarItem(placement: .bottomBar)
             {
                 HStack {
