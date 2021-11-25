@@ -1,0 +1,13 @@
+/* 
+  Russian.strings
+  TextEditor
+  Created by Serega on 26.11.2021.
+*/
+"Founded words count: %ld" = "Количество найденных слов: %ld";
+"Words count: %ld" = "Количество слов: %ld";
+"Search(beta)..." = "Поиск(beta)...";
+"Cancel" = "Отмена";
+"Successful saved!" = "Успешно сохраннено!";
+"Error while saving!" = "Ошибка во время сохранения!";
+"Select highlight color" = "Выберите цвет выделения";
+"Successful copied!" = "Успешно скопированно!";

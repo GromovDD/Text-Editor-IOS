@@ -1,0 +1,13 @@
+/* 
+  English.strings
+  TextEditor
+  Created by Serega on 25.11.2021.
+*/
+"Founded words count: %ld" = "Founded words count: %ld";
+"Words count: %ld" = "Words count: %ld";
+"Search(beta)..." = "Search(beta)...";
+"Cancel" = "Cancel";
+"Successful saved!" = "Successful saved!";
+"Error while saving!" = "Error while saving!";
+"Select highlight color" = "Select highlight color";
+"Successful copied!" = "Successful copied!";

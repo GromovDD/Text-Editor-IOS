@@ -51,13 +51,13 @@ struct ContentView: View {
     @Binding public var document: TextDocument
     private func getBottomText() -> String
     {
-        var result = ""
+        var result =  ""
         if(isSearching && foundedWordsCount > 0)
         {
-            result = "Founded \(foundedWordsCount)\(foundedWordsCount == 1 ? " repeat" : " repeats")"
+            result = String.localizedStringWithFormat(NSLocalizedString("Founded words count: %ld", comment: ""), wordsCount)
         }
         else {
-            result = "Words count: \(wordsCount)"
+            result = String.localizedStringWithFormat(NSLocalizedString("Words count: %ld", comment: ""), wordsCount)
         }
         return result
     }
@@ -71,7 +71,9 @@ struct ContentView: View {
     }
     private func dissmisSearch()
     {
-        dissmisKeyboard()
+        if(searchBarFocus) {
+            dissmisKeyboard()
+        }
         searchText = ""
         withAnimation(.default) {
             isSearching = false
@@ -102,7 +104,7 @@ struct ContentView: View {
         {
             if(isSearching) {
                 HStack {
-                    MultilineTextField("Search(beta)...", text: $searchText,maxHeight: 82.0).focused($searchBarFocus)
+                    MultilineTextField(NSLocalizedString("Search(beta)...", comment: ""), text: $searchText,maxHeight: 82.0).focused($searchBarFocus)
                         .padding(.horizontal, 25)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
@@ -124,7 +126,7 @@ struct ContentView: View {
                     Button(action: {
                         dissmisSearch()
                     }) {
-                        Text("Cancel")
+                        Text(NSLocalizedString("Cancel", comment: ""))
                     }
                     .padding(.trailing, 10)
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
@@ -168,12 +170,12 @@ struct ContentView: View {
                            , label: {
                         Image(systemName: "folder").accentColor(saveAvailable ? .blue : .gray)
                     }
-                    ).disabled(!saveAvailable).spAlert(isPresent: $showSaveSuccessAlert, title: "Successful saved!", message: nil, duration: alertDuration, dismissOnTap: false, preset: .done, haptic: .success, layout: nil, completion: {
+                    ).disabled(!saveAvailable).spAlert(isPresent: $showSaveSuccessAlert, title: NSLocalizedString("Successful saved!", comment: ""), message: nil, duration: alertDuration, dismissOnTap: false, preset: .done, haptic: .success, layout: nil, completion: {
                         saveAvailable = true
-                    }).spAlert(isPresent: $showSaveErrorAlert, title: "Error while saving!", message: nil, duration: alertDuration, dismissOnTap: false, preset: .error, haptic: .error, layout: nil, completion: {
+                    }).spAlert(isPresent: $showSaveErrorAlert, title: NSLocalizedString("Error while saving!", comment: ""), message: nil, duration: alertDuration, dismissOnTap: false, preset: .error, haptic: .error, layout: nil, completion: {
                         saveAvailable = true
                     })
-                    ColorPicker("Select highlight color", selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
+                    ColorPicker(LocalizedStringKey("Select highlight color"), selection: $choosedColor, supportsOpacity: false).onChange(of: choosedColor, perform: {
                         color in
                         currentHighlightColor = UIColor(color)
                         saveColor()
@@ -222,7 +224,7 @@ struct ContentView: View {
                     Button(action: {
                         UIPasteboard.general.string = document.text
                         copyCompleted = true
-                    }, label: { Image(systemName: "doc.on.doc")}).spAlert(isPresent: $copyCompleted, title: "Successful copied!", message: nil, duration: alertDuration, dismissOnTap: false, preset: .done, haptic: .success, layout: nil, completion: nil)
+                    }, label: { Image(systemName: "doc.on.doc")}).spAlert(isPresent: $copyCompleted, title: NSLocalizedString("Successful copied!", comment: ""), message: nil, duration: alertDuration, dismissOnTap: false, preset: .done, haptic: .success, layout: nil, completion: nil)
                 }
             }
         }.onAppear{
