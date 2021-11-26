@@ -250,7 +250,6 @@
 			knownRegions = (
 				en,
 				ru,
-				Base,
 			);
 			mainGroup = E82CD947271B0003005865AD;
 			packageReferences = (
