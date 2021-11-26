@@ -30,6 +30,7 @@ struct ContentView: View {
             URL(string: urlString) as Any
         }
     ])
+    @State private var searchText = ""
     @State private var copyCompleted  = false
     @State private var saveAvailable = true
     private let alertDuration = 0.5
@@ -45,7 +46,7 @@ struct ContentView: View {
     @State private var isSearching = false
     @State private var foundedWordsCount = 0
     @State private var wordsCount = 0
-    @State private var searchText = ""
+    @State private var searchTextSource = ""
     @FocusState private var searchBarFocus : Bool
     @FocusState private var editorFocus : Bool
     @Binding public var document: TextDocument
@@ -54,7 +55,7 @@ struct ContentView: View {
         var result =  ""
         if(isSearching && foundedWordsCount > 0)
         {
-            result = String.localizedStringWithFormat(NSLocalizedString("Founded words count: %ld", comment: ""), wordsCount)
+            result = String.localizedStringWithFormat(NSLocalizedString("Founded words count: %ld", comment: ""), foundedWordsCount)
         }
         else {
             result = String.localizedStringWithFormat(NSLocalizedString("Words count: %ld", comment: ""), wordsCount)
@@ -74,7 +75,7 @@ struct ContentView: View {
         if(searchBarFocus) {
             dissmisKeyboard()
         }
-        searchText = ""
+        searchTextSource = ""
         withAnimation(.default) {
             isSearching = false
         }
@@ -104,7 +105,7 @@ struct ContentView: View {
         {
             if(isSearching) {
                 HStack {
-                    MultilineTextField(NSLocalizedString("Search(beta)...", comment: ""), text: $searchText,maxHeight: 82.0).focused($searchBarFocus)
+                    MultilineTextField(NSLocalizedString("Search(beta)...", comment: ""), text: $searchTextSource,maxHeight: 82.0).focused($searchBarFocus)
                         .padding(.horizontal, 25)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
@@ -120,7 +121,8 @@ struct ContentView: View {
                                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                                     .padding(.leading, 15)
                             }
-                        ).onChange(of: searchText, perform: {_ in
+                        ).onChange(of: searchTextSource, perform: {text in
+                            searchText = searchTextSource.trimmingCharacters(in: .whitespacesAndNewlines)
                             updateFoundedWordsCount()
                         })
                     Button(action: {
@@ -132,7 +134,7 @@ struct ContentView: View {
                 }.transition(.move(edge: .top).combined(with: .opacity)).padding(.vertical, 5)
                 
             }
-            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText.trimmingCharacters(in: .whitespacesAndNewlines))).introspect{
+            HighlightedTextEditor(text: $document.text, highlightRules: getHighlightRules(pattern: searchText)).introspect{
                 editor in
                 editor.textView.autocorrectionType = .no
             }.onSelectionChange{ _ in
